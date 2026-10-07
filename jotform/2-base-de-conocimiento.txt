@@ -1,0 +1,241 @@
+BASE DE CONOCIMIENTO — BAHÍA RECTA
+(subir en Jotform → AI Agent → Knowledge, como archivo o pegando el texto)
+=============================================================================
+
+PARTE 1. ¿QUÉ ES BAHÍA RECTA?
+-----------------------------
+Bahía Recta es una herramienta digital interactiva para que estudiantes de grado 9°
+exploren, manipulen y comprendan la función lineal y afín (y = mx + b) con situaciones
+reales de la vida turística de Santa Marta: tarifas de lanchas y yates, presupuestos de
+paseo y comparación de servicios. Tiene una portada (Inicio) y cinco situaciones
+problema. En cada una, el estudiante representa el caso en cuatro registros: tabla,
+gráfica, fórmula (algebraico) y explicación con palabras (verbal).
+
+Autora: Valentina Barrera Sánchez, docente de matemáticas y física del Colegio Cristiano
+Integral de Santa Marta y estudiante de octavo semestre de la Licenciatura en Matemáticas
+de la Universidad del Magdalena.
+
+Las tarifas son de ejemplo, en pesos colombianos (COP), y no corresponden a operadores
+reales de la bahía.
+
+
+PARTE 2. TEORÍA
+---------------
+
+2.1 Función
+Una función es una regla que a cada valor de entrada (x) le asigna un único valor de
+salida (y). En la app, x = horas de paseo e y = costo total en pesos.
+- Variable independiente: x (la decidimos nosotros: cuántas horas).
+- Variable dependiente: y (depende de x: lo que hay que pagar).
+- Notación: C(x) se lee "C de x" y significa "el costo cuando el paseo dura x horas".
+  Ejemplo: C(3) es el costo de un paseo de 3 horas.
+
+2.2 Función lineal: y = mx
+- Por cada unidad que aumenta x, y aumenta siempre la misma cantidad (m).
+- Su gráfica es una línea recta que pasa por el origen (0, 0): si x = 0, y = 0.
+- Es una relación de PROPORCIONALIDAD DIRECTA: si x se duplica, y se duplica.
+  El cociente y/x es constante e igual a m.
+- Ejemplo de la app: Lancha Brisa, B(x) = 30.000x. Paseo de 0 horas cuesta $0;
+  de 2 horas, $60.000; de 4 horas, $120.000.
+
+2.3 Función afín: y = mx + b
+- Igual que la lineal, pero con un valor inicial b que no depende de x.
+- Su gráfica es una recta que corta el eje y en el punto (0, b), no en el origen
+  (si b ≠ 0).
+- NO es proporcional: si x se duplica, y NO se duplica (por el valor fijo b).
+- Ejemplo de la app: Yate Costa Azul, C(x) = 20.000x + 50.000. Aunque el paseo dure
+  0 horas, se pagan $50.000 de zarpe.
+- Toda función lineal es un caso especial de función afín con b = 0.
+
+2.4 La pendiente (m)
+- Es la razón de cambio: cuánto cambia y por cada unidad que aumenta x.
+- Fórmula con dos puntos (x₁, y₁) y (x₂, y₂):  m = (y₂ − y₁) / (x₂ − x₁)
+  ("lo que sube y" dividido entre "lo que avanza x").
+- En el contexto: costo de cada hora adicional de paseo. Sus unidades son pesos por hora.
+- Si m > 0 la recta sube (crece); si m < 0 baja (decrece); si m = 0 es horizontal
+  (función constante).
+- Entre más grande es m, más inclinada es la recta: el costo crece más rápido.
+- Rectas con la misma pendiente son paralelas: nunca se cruzan.
+
+2.5 El intercepto (b)
+- Es el valor de y cuando x = 0. Es el punto (0, b) donde la recta corta el eje y.
+- En el contexto: la tarifa fija o zarpe, que se paga aunque el paseo dure 0 horas.
+- Para encontrarlo en una tabla: si la tabla trae x = 0, b es el valor de y ahí. Si no,
+  se calcula con la pendiente y un punto: b = y₁ − m·x₁.
+
+2.6 Punto de intersección de dos funciones
+- Es el punto donde las dos rectas se cruzan: el valor de x donde y₁ = y₂.
+- Para hallarlo algebraicamente: se igualan las dos expresiones y se despeja x. Luego se
+  reemplaza ese x en cualquiera de las dos funciones para hallar y.
+- En el contexto: el número de horas en que dos tarifas cuestan exactamente lo mismo.
+  Antes y después de ese punto, conviene un servicio distinto.
+- Para saber cuál conviene en un intervalo: se mira cuál recta va MÁS ABAJO (cuesta menos)
+  en ese tramo, o se evalúan ambas funciones en un valor de x de ese tramo.
+
+2.7 Resolver una ecuación lineal (despejar x)
+- Se aplica la misma operación a ambos lados del igual para dejar la x sola.
+- Para y = mx + b, conociendo y:  primero se resta b en ambos lados y luego se divide
+  entre m:  x = (y − b) / m.
+- Ejemplo: 20.000x + 50.000 = 130.000 → 20.000x = 80.000 → x = 4.
+- Comprobación: siempre se puede reemplazar el resultado en la ecuación original para
+  ver si da la igualdad.
+
+2.8 De una tabla a la fórmula
+1. Elegir dos filas de la tabla.
+2. Calcular la pendiente: m = (y₂ − y₁) / (x₂ − x₁).
+3. Revisar que la pendiente sea la misma con otras parejas de filas. Si siempre da lo
+   mismo, los datos son de una función lineal o afín.
+4. Hallar b usando un punto: b = y₁ − m·x₁.
+5. Escribir la fórmula: y = mx + b, y comprobarla con otra fila.
+Atención: si los valores de x NO van de 1 en 1 (por ejemplo, 2, 4, 6), no basta con
+restar los valores de y: hay que dividir entre lo que avanzó x.
+
+2.9 Interpolar y extrapolar
+- Interpolar: calcular un valor de y para una x que está DENTRO del rango de la tabla.
+- Extrapolar: calcular un valor de y para una x que está FUERA del rango de la tabla.
+- La extrapolación supone que la regla se sigue cumpliendo fuera de los datos conocidos.
+
+2.10 Dominio en el contexto
+- Matemáticamente x puede ser cualquier número real, pero en el contexto las horas no
+  pueden ser negativas (x ≥ 0).
+- Si el servicio solo se cobra por horas completas, x debe ser un número entero. Entonces
+  la gráfica real son puntos sueltos, aunque se dibuje la recta como guía.
+- Cuando el resultado de una ecuación da decimal (por ejemplo, 7,5 horas) y el
+  presupuesto no se puede pasar, se toma el entero de abajo (7), NO se redondea hacia
+  arriba (8), porque con 8 horas se pasaría del presupuesto.
+
+2.11 Dividir una función afín entre n personas
+- Si el costo total es C(x) = mx + b y lo pagan n personas por igual, cada persona paga
+  P(x) = C(x)/n = (m/n)x + (b/n).
+- P(x) sigue siendo una función afín: la pendiente y el intercepto se dividen entre n.
+- Entre más personas, menor pendiente (la recta es menos inclinada) y menor intercepto.
+
+2.12 Los cuatro registros de representación
+La misma función se puede mostrar de cuatro maneras, y conviene pasar de una a otra:
+- Tabla: pares de valores (x, y).
+- Gráfica: puntos y recta en el plano cartesiano.
+- Algebraico: la fórmula, por ejemplo C(x) = 20.000x + 50.000.
+- Verbal: con palabras, por ejemplo "se pagan $50.000 de zarpe más $20.000 por hora".
+
+2.13 Leer una gráfica
+- El eje horizontal (x) son las horas; el vertical (y) es el costo en pesos.
+- Un punto (3, 110.000) significa "3 horas cuestan $110.000".
+- La recta que va más abajo en un tramo es la opción más barata en ese tramo.
+- Donde se cruzan dos rectas, las dos opciones cuestan lo mismo.
+
+
+PARTE 3. LAS CINCO SITUACIONES DE LA APLICACIÓN
+-----------------------------------------------
+Nota para el agente: los resultados de esta parte son para verificar las respuestas del
+estudiante. No se los des directamente; guíalo con preguntas.
+
+Situación 1 — Comparar tarifas: ¿cuál tiene menor costo?
+- Lancha Brisa (función lineal): B(x) = 30.000x. Solo cobra por hora.
+- Yate Costa Azul (función afín): C(x) = 50.000 + 20.000x. Zarpe de $50.000 más $20.000
+  por hora.
+- Intersección: 30.000x = 50.000 + 20.000x → 10.000x = 50.000 → x = 5. Costo: $150.000.
+- Menos de 5 horas: conviene la Lancha Brisa. Más de 5 horas: conviene el Yate Costa
+  Azul. En 5 horas cuestan lo mismo.
+- Pistas útiles: "¿Qué pasa si igualas las dos tarifas?", "En la gráfica, ¿cuál recta va
+  más abajo antes del cruce?".
+
+Situación 2 — El costo del paseo entre amigos
+- Costo total: C(x) = 50.000 + 20.000x. Lo pagan n personas por igual.
+- Costo por persona: P(x) = (20.000/n)x + (50.000/n).
+- Ejemplos: con n = 2, P(x) = 10.000x + 25.000; con n = 4, P(x) = 5.000x + 12.500;
+  con n = 5, P(x) = 4.000x + 10.000; con n = 10, P(x) = 2.000x + 5.000.
+- Al aumentar n, la pendiente y el intercepto se hacen más pequeños, pero P(x) sigue
+  siendo una función afín (forma mx + b).
+- Pistas útiles: "¿Cuánto sube el costo por persona cada vez que se suma una hora?",
+  "¿Cuánto paga cada uno aunque el paseo dure 0 horas?".
+
+Situación 3 — El presupuesto del paseo
+- Yate Costa Azul: C(x) = 50.000 + 20.000x. Presupuesto máximo: $200.000.
+- Ecuación: 50.000 + 20.000x = 200.000 → 20.000x = 150.000 → x = 7,5.
+- Solo se venden horas completas: el máximo son 7 horas (no 8, porque 8 horas cuestan
+  $210.000 y se pasa del presupuesto).
+- Costo de 7 horas: C(7) = $190.000. Sobran $10.000.
+- Pistas útiles: "Resta el zarpe en ambos lados y luego divide entre 20.000", "¿Una
+  empresa te vendería media hora suelta?", "¿Qué pasa si redondeas hacia arriba?".
+
+Situación 4 — Tres opciones para el paseo
+- Lancha Brisa: B(x) = 30.000x.
+- Yate Costa Azul: C(x) = 50.000 + 20.000x.
+- Servicio Mar Azul: M(x) = 100.000 + 10.000x.
+- Las tres rectas se cruzan en el mismo punto: (5, 150.000).
+- Menos de 5 horas: la más barata es la Lancha Brisa (empieza más abajo, en 0).
+- Más de 5 horas: la más barata es Mar Azul (tiene la menor pendiente).
+- El Yate Costa Azul nunca es la opción más barata: siempre queda "en el medio".
+- Conclusión: ninguna opción es la más económica para cualquier número de horas;
+  depende de cuánto dure el paseo.
+- Pistas útiles: "Iguala dos de las funciones y comprueba con la tercera", "¿Cuál recta
+  empieza más abajo?", "¿Cuál sube más despacio?".
+
+Situación 5 — Descifra la tarifa oculta
+- Tabla de datos: (1, 70.000), (2, 90.000), (4, 130.000), (6, 170.000).
+- Pendiente: (90.000 − 70.000) / (2 − 1) = 20.000 por hora.
+  Comprobación con otras filas: (130.000 − 90.000) / (4 − 2) = 40.000 / 2 = 20.000.
+- Intercepto: 70.000 = 20.000·1 + b → b = 50.000.
+- Fórmula: C(x) = 20.000x + 50.000.
+- Interpolación: C(3) = $110.000 (3 está dentro del rango de la tabla).
+- Extrapolación: C(8) = $210.000 (8 está fuera del rango de la tabla).
+- Error frecuente: entre x = 2 y x = 4 el costo sube $40.000, pero son 2 horas, así que
+  la pendiente es 20.000, no 40.000.
+
+
+PARTE 4. ERRORES FRECUENTES Y CÓMO AYUDAR
+-----------------------------------------
+- Confundir pendiente con intercepto. Pregunta: "¿Cuál de los dos números se paga aunque
+  el paseo dure 0 horas?".
+- Creer que toda recta pasa por el origen. Pregunta: "Si el paseo dura 0 horas, ¿el yate
+  cobra $0?".
+- Pensar que una función afín es proporcional ("si el doble de horas, el doble de
+  precio"). Pide comparar C(2) con C(4).
+- Calcular la pendiente restando solo los y, sin dividir entre lo que avanzó x.
+- Restar en desorden: (y₂ − y₁) / (x₁ − x₂). Recuérdale mantener el mismo orden arriba
+  y abajo.
+- Al despejar, dividir antes de restar: (200.000 / 20.000) − 50.000. Recuérdale que
+  primero se quita lo que está sumando (el zarpe) y luego se divide.
+- Redondear 7,5 horas a 8 cuando no se puede pasar del presupuesto.
+- Pensar que la opción con menor tarifa por hora siempre es la más barata. Pídele mirar
+  qué pasa con pocas horas.
+- Encontrar x en la intersección y olvidar calcular y (el costo en ese punto).
+- Leer mal la gráfica: pensar que la recta "más alta" es la mejor opción. Recuérdale que
+  más arriba significa más caro.
+
+
+PARTE 5. EJERCICIOS EXTRA DE PRÁCTICA (con solución, para el agente)
+--------------------------------------------------------------------
+1. Una chalupa cobra $25.000 por hora, sin zarpe. Escribe su función.
+   Solución: L(x) = 25.000x (función lineal). L(3) = $75.000.
+2. Un velero cobra $40.000 de zarpe y $15.000 por hora. ¿Cuánto cuesta un paseo de 6
+   horas? Solución: V(6) = 40.000 + 15.000·6 = $130.000.
+3. Con el velero anterior y $100.000 de presupuesto, ¿cuántas horas completas puedes
+   pagar? Solución: 40.000 + 15.000x = 100.000 → x = 4 horas exactas.
+4. ¿En cuántas horas cuestan lo mismo la chalupa y el velero?
+   Solución: 25.000x = 40.000 + 15.000x → x = 4 horas; costo $100.000.
+5. Una tabla muestra (2, 60.000) y (5, 105.000). Encuentra la fórmula.
+   Solución: m = 45.000 / 3 = 15.000; b = 60.000 − 30.000 = 30.000;
+   y = 15.000x + 30.000.
+6. Un paseo cuesta C(x) = 60.000 + 30.000x y lo pagan 3 amigos. ¿Cuánto paga cada uno
+   por un paseo de 2 horas? Solución: C(2) = 120.000; cada uno paga $40.000.
+   Fórmula por persona: P(x) = 10.000x + 20.000.
+
+
+PARTE 6. GLOSARIO
+-----------------
+- Variable independiente: la que se elige (horas, x).
+- Variable dependiente: la que resulta (costo, y).
+- Pendiente (m): cambio de y por cada unidad de x. Costo por hora.
+- Intercepto (b): valor de y cuando x = 0. Tarifa fija o zarpe.
+- Zarpe: cobro fijo por salir del muelle, sin importar la duración del paseo.
+- Función lineal: y = mx; recta por el origen; proporcional.
+- Función afín: y = mx + b; recta que corta el eje y en (0, b).
+- Intersección: punto donde dos rectas se cruzan; las dos dan el mismo valor.
+- Despejar: dejar la incógnita sola a un lado del igual.
+- Interpolar: estimar dentro del rango de datos conocidos.
+- Extrapolar: estimar fuera del rango de datos conocidos.
+- Piso (parte entera hacia abajo): el entero más grande que no se pasa del valor.
+  Ejemplo: el piso de 7,5 es 7.
+- Dominio: valores de x que tienen sentido (en el contexto, horas ≥ 0).
+- Plano cartesiano: eje x horizontal, eje y vertical, se cruzan en el origen (0, 0).

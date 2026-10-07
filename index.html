@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bahía Recta — Función lineal y afín con tarifas turísticas</title>
+  <meta
+    name="description"
+    content="Aplicación educativa para explorar función lineal y afín comparando tarifas de paseos en la Bahía de Santa Marta. Grado 9°."
+  />
+
+  <!-- Tipografía: Poppins (títulos) y Nunito (texto), con fallback a sans-serif del sistema -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- math.js: usado para todos los cálculos (funciones lineales, intersecciones) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/13.1.1/math.min.js"></script>
+  <!-- Plotly.js: usado para todas las gráficas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.34.0/plotly.min.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+  <header class="app-header">
+    <div class="app-header__brand">
+      <span class="app-header__wave" aria-hidden="true"></span>
+      <h1 class="app-header__title">
+        <span class="app-header__icon" aria-hidden="true"></span>
+        Bahía Recta
+      </h1>
+      <p class="app-header__tagline">
+        Función lineal y afín con tarifas de paseos en la Bahía de Santa Marta
+      </p>
+    </div>
+    <div class="app-header__situation" aria-live="polite">
+      <p class="app-header__situation-label" id="situation-label">Situación <span id="situation-number">1</span></p>
+      <h2 class="app-header__situation-title" id="situation-title">Cargando…</h2>
+      <p class="app-header__situation-objective" id="situation-objective"></p>
+    </div>
+  </header>
+
+  <nav class="situation-nav" aria-label="Navegación entre situaciones problema">
+    <ul class="situation-nav__list" role="tablist" aria-label="Situaciones problema">
+      <li role="presentation">
+        <button
+          type="button"
+          role="tab"
+          id="tab-portada"
+          aria-controls="situation-container"
+          aria-selected="true"
+          tabindex="0"
+          data-situation="portada"
+          class="situation-nav__tab situation-nav__tab--home"
+        >
+          <span class="situation-nav__number" aria-hidden="true">⌂</span>
+          <span class="situation-nav__label">Inicio</span>
+        </button>
+      </li>
+      <li role="presentation">
+        <button
+          type="button"
+          role="tab"
+          id="tab-situacion1"
+          aria-controls="situation-container"
+          aria-selected="false"
+          tabindex="-1"
+          data-situation="situacion1"
+          class="situation-nav__tab"
+        >
+          <span class="situation-nav__number">1</span>
+          <span class="situation-nav__label">Comparar tarifas</span>
+        </button>
+      </li>
+      <li role="presentation">
+        <button
+          type="button"
+          role="tab"
+          id="tab-situacion2"
+          aria-controls="situation-container"
+          aria-selected="false"
+          tabindex="-1"
+          data-situation="situacion2"
+          class="situation-nav__tab"
+        >
+          <span class="situation-nav__number">2</span>
+          <span class="situation-nav__label">Costo entre amigos</span>
+        </button>
+      </li>
+      <li role="presentation">
+        <button
+          type="button"
+          role="tab"
+          id="tab-situacion3"
+          aria-controls="situation-container"
+          aria-selected="false"
+          tabindex="-1"
+          data-situation="situacion3"
+          class="situation-nav__tab"
+        >
+          <span class="situation-nav__number">3</span>
+          <span class="situation-nav__label">El presupuesto</span>
+        </button>
+      </li>
+      <li role="presentation">
+        <button
+          type="button"
+          role="tab"
+          id="tab-situacion4"
+          aria-controls="situation-container"
+          aria-selected="false"
+          tabindex="-1"
+          data-situation="situacion4"
+          class="situation-nav__tab"
+        >
+          <span class="situation-nav__number">4</span>
+          <span class="situation-nav__label">Tres opciones</span>
+        </button>
+      </li>
+      <li role="presentation">
+        <button
+          type="button"
+          role="tab"
+          id="tab-situacion5"
+          aria-controls="situation-container"
+          aria-selected="false"
+          tabindex="-1"
+          data-situation="situacion5"
+          class="situation-nav__tab"
+        >
+          <span class="situation-nav__number">5</span>
+          <span class="situation-nav__label">Tarifa oculta</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <div
+      id="situation-container"
+      class="situation-container"
+      role="tabpanel"
+      aria-labelledby="tab-portada"
+      tabindex="-1"
+    >
+      <!-- Cada situacionN.js monta aquí su UI completa al navegar -->
+      <p class="loading-placeholder">Cargando situación…</p>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p>
+      Bahía Recta — material educativo original para grado 9°. Tarifas de ejemplo en pesos
+      colombianos, sin relación con operadores reales de la Bahía de Santa Marta.
+    </p>
+  </footer>
+
+  <!-- Utilidades compartidas (deben cargar antes que las situaciones) -->
+  <script src="js/utils/math-utils.js"></script>
+  <script src="js/utils/validation.js"></script>
+  <script src="js/utils/export.js"></script>
+  <script src="js/utils/ui-helpers.js"></script>
+
+  <!-- Portada (pantalla de inicio) -->
+  <script src="js/portada.js"></script>
+
+  <!-- Módulos de cada situación -->
+  <script src="js/situations/situacion1.js"></script>
+  <script src="js/situations/situacion2.js"></script>
+  <script src="js/situations/situacion3.js"></script>
+  <script src="js/situations/situacion4.js"></script>
+  <script src="js/situations/situacion5.js"></script>
+
+  <!-- Orquestador de navegación y estado global: debe cargar al final -->
+  <script src="js/app.js"></script>
+
+  <!--
+    Chatbot de Jotform (AI Agent).
+    Para activarlo: en Jotform, crear el agente → "Publicar" → "Incrustar en sitio web"
+    (Embed), copiar el <script ...> que entrega Jotform y pegarlo justo debajo de este
+    comentario. Aparecerá como burbuja flotante en todas las pantallas.
+  -->
+  <script src="https://cdn.jotfor.ms/agent/embedjs/01a0ef9470f070008115bd5375ba3a4b23f4/embed.js"></script>
+</body>
+</html>
