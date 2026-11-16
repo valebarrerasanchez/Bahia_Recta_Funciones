@@ -39,7 +39,7 @@
       </p>
     </div>
     <div class="app-header__situation" aria-live="polite">
-      <p class="app-header__situation-label" id="situation-label">Situación <span id="situation-number">1</span></p>
+      <p class="app-header__situation-label" id="situation-label"><span id="situation-label-text">Situación</span> <span id="situation-number">1</span></p>
       <h2 class="app-header__situation-title" id="situation-title">Cargando…</h2>
       <p class="app-header__situation-objective" id="situation-objective"></p>
     </div>
@@ -137,6 +137,27 @@
           <span class="situation-nav__label">Tarifa oculta</span>
         </button>
       </li>
+      <li role="presentation">
+        <!-- Pestaña de EVALUACIÓN: va al final y usa un ícono de bandera en lugar de número -->
+        <button
+          type="button"
+          role="tab"
+          id="tab-retos"
+          aria-controls="situation-container"
+          aria-selected="false"
+          tabindex="-1"
+          data-situation="retos"
+          class="situation-nav__tab situation-nav__tab--reto"
+        >
+          <span class="situation-nav__number" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+              <path d="M5 21V4" />
+              <path d="M5 4h11l-2 4 2 4H5" fill="currentColor" />
+            </svg>
+          </span>
+          <span class="situation-nav__label">Reto final</span>
+        </button>
+      </li>
     </ul>
   </nav>
 
@@ -165,6 +186,12 @@
   <script src="js/utils/validation.js"></script>
   <script src="js/utils/export.js"></script>
   <script src="js/utils/ui-helpers.js"></script>
+  <!-- Muelle 3D (VR/AR) de la Situación 4. OJO: A-Frame NO se carga aquí;
+       este archivo lo descarga del CDN solo cuando se abre la Situación 4. -->
+  <script src="js/utils/muelle-3d.js"></script>
+
+  <!-- Banco de preguntas del Reto final (datos puros, debe cargar antes de los módulos) -->
+  <script src="js/data/banco-preguntas.js"></script>
 
   <!-- Portada (pantalla de inicio) -->
   <script src="js/portada.js"></script>
@@ -175,6 +202,9 @@
   <script src="js/situations/situacion3.js"></script>
   <script src="js/situations/situacion4.js"></script>
   <script src="js/situations/situacion5.js"></script>
+
+  <!-- Reto final (evaluación): usa el banco de preguntas de js/data -->
+  <script src="js/retos.js"></script>
 
   <!-- Orquestador de navegación y estado global: debe cargar al final -->
   <script src="js/app.js"></script>

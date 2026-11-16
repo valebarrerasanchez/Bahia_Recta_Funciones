@@ -38,9 +38,9 @@
   var fnMar = MathUtils.linearFunction(TARIFA_MAR_HORA, TARIFA_MAR_ZARPE);
 
   var SERVICIOS = [
-    { key: "brisa", label: "Lancha Brisa", fn: fnBrisa, color: "#0284c7" },
-    { key: "costa", label: "Yate Costa Azul", fn: fnCosta, color: "#ea580c" },
-    { key: "mar", label: "Servicio Mar Azul", fn: fnMar, color: "#15803d" },
+    { key: "brisa", label: "Lancha Brisa", letra: "B", fn: fnBrisa, color: "#0284c7" },
+    { key: "costa", label: "Yate Costa Azul", letra: "C", fn: fnCosta, color: "#ea580c" },
+    { key: "mar", label: "Servicio Mar Azul", letra: "M", fn: fnMar, color: "#15803d" },
   ];
 
   var intersecciones = [
@@ -77,6 +77,7 @@
 
   var xExplora = X_EXPLORA_INICIAL;
   var questionWidgets = {};
+  var muelle = null; // escena 3D / AR de las torres de monedas (js/utils/muelle-3d.js)
 
   function render(container) {
     container.innerHTML = "";
@@ -141,6 +142,27 @@
       UI.el("div", { id: "sit4-table" }),
     ]);
     content.appendChild(tableBox);
+
+    // Muelle 3D con realidad virtual/aumentada: las mismas tres tarifas como
+    // torres de monedas. Se mueve con el control "Explorar horas", y sus
+    // botones −/+ (en VR o con la cámara) actualizan ese mismo control.
+    if (window.BahiaRecta.Muelle3D) {
+      muelle = window.BahiaRecta.Muelle3D.crear({
+        servicios: SERVICIOS.map(function (s) {
+          return { clave: s.key, nombre: s.label, letra: s.letra, m: s.fn.m, b: s.fn.b, color: s.color };
+        }),
+        horas: xExplora,
+        horasMax: MAX_HORAS_DOMINIO,
+        puntoComun: puntoComun,
+        alCambiarHoras: function (x) {
+          xExplora = x;
+          xControl.setValue(x);
+          UI.setError(errorBox, "");
+          actualizarTodo();
+        },
+      });
+      content.appendChild(muelle.elemento);
+    }
 
     var algebraicBox = UI.el("div", { class: "algebraic-box" }, [
       UI.el("h3", { text: "Registro algebraico" }),
@@ -249,6 +271,7 @@
     actualizarTabla();
     actualizarAlgebraico();
     actualizarVerbal();
+    if (muelle) muelle.setHoras(xExplora);
   }
 
   function actualizarGrafica() {
@@ -401,6 +424,11 @@
 
   function destroy() {
     questionWidgets = {};
+    // Desmonta la escena 3D, apaga la cámara y libera el contexto WebGL.
+    if (muelle) {
+      muelle.destruir();
+      muelle = null;
+    }
   }
 
   window.BahiaRecta = window.BahiaRecta || {};

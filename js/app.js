@@ -1,14 +1,14 @@
 /**
  * app.js
  * Orquestador principal de "Bahía Recta": maneja la navegación entre las
- * portada y las 5 situaciones (pestañas ARIA tabs), el estado de cuál está activa, y el
+ * portada, las 5 situaciones y el Reto final (pestañas ARIA tabs), el estado de cuál está activa, y el
  * ciclo de vida init/destroy de cada módulo de situación para no acumular
  * listeners duplicados al navegar entre pestañas.
  */
 (function () {
   "use strict";
 
-  var TAB_ORDER = ["portada", "situacion1", "situacion2", "situacion3", "situacion4", "situacion5"];
+  var TAB_ORDER = ["portada", "situacion1", "situacion2", "situacion3", "situacion4", "situacion5", "retos"];
 
   var state = {
     currentId: null,
@@ -19,6 +19,7 @@
   var titleEl = document.getElementById("situation-title");
   var objectiveEl = document.getElementById("situation-objective");
   var numberEl = document.getElementById("situation-number");
+  var labelTextEl = document.getElementById("situation-label-text");
   var situationBox = document.querySelector(".app-header__situation");
 
   function getSituationModule(id) {
@@ -52,6 +53,8 @@
     // Encabezado dinámico según metadata de la situación.
     var meta = mod.meta || {};
     numberEl.textContent = meta.number || "";
+    // Etiqueta sobre el título: "Situación" por defecto; el Reto final usa la suya.
+    if (labelTextEl) labelTextEl.textContent = meta.label || "Situación";
     titleEl.textContent = meta.title || "";
     objectiveEl.textContent = meta.objective || "";
     document.title = "Bahía Recta — " + (meta.title || "Situación");

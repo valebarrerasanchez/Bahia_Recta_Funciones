@@ -826,3 +826,1020 @@ button:focus {
     padding: 1rem;
   }
 }
+
+/* =====================================================================
+ * Reto final (pestaña de EVALUACIÓN)
+ * Pantallas: inicio → pregunta (una a la vez) → resultados.
+ * Usa la misma paleta, tipografías y radios del resto de la app.
+ * ===================================================================== */
+
+/* Pestaña con ícono de bandera en lugar de número */
+.situation-nav__tab--reto .situation-nav__number {
+  color: var(--color-orange);
+}
+
+.situation-nav__tab--reto[aria-selected="true"] .situation-nav__number {
+  color: var(--color-white);
+}
+
+.situation-nav__tab--reto .situation-nav__number svg {
+  display: block;
+}
+
+/* Texto solo para lectores de pantalla */
+.reto-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.reto {
+  max-width: 820px;
+  margin: 0 auto;
+  /* deja espacio para la barra de pestañas fija al hacer scroll */
+  scroll-margin-top: 4.5rem;
+}
+
+.reto-flujo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reto-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.4rem;
+}
+
+.reto-titulo {
+  font-size: 1.5rem;
+}
+
+.reto-titulo:focus,
+.reto-aviso:focus {
+  outline: none;
+}
+
+.reto-titulo:focus-visible,
+.reto-aviso:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* ---------- Botones ---------- */
+
+.reto-btn {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: 0.65rem 1.3rem;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.reto-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.reto-btn--primario {
+  background: var(--color-orange-bright);
+  color: var(--color-white);
+}
+
+.reto-btn--primario:hover:not(:disabled) {
+  background: var(--color-orange);
+}
+
+.reto-btn--secundario {
+  background: var(--color-white);
+  color: var(--color-blue-deep);
+  border-color: var(--color-blue-deep);
+}
+
+.reto-btn--secundario:hover:not(:disabled) {
+  background: var(--color-blue-bg);
+}
+
+.reto-btn--peligro {
+  background: var(--color-danger);
+  color: var(--color-white);
+}
+
+.reto-btn--peligro:hover {
+  background: #991b1b;
+}
+
+.reto-btn--enlace {
+  background: transparent;
+  color: var(--color-blue-deep);
+  text-decoration: underline;
+  padding: 0.3rem 0.5rem;
+  font-weight: 700;
+}
+
+.reto-btn--grande {
+  font-size: 1.05rem;
+  padding: 0.8rem 1.8rem;
+}
+
+.reto-btn--pequeno {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+}
+
+.reto-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: flex-end;
+}
+
+.reto-acciones--nav {
+  justify-content: space-between;
+}
+
+/* ---------- Pantalla de inicio ---------- */
+
+.reto-inicio {
+  text-align: center;
+  border-top: 5px solid var(--color-orange-bright);
+  padding: 2rem 1.5rem;
+}
+
+.reto-inicio__icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background: var(--color-blue-bg);
+  color: var(--color-blue-deep);
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.reto-inicio__lead {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+}
+
+.reto-instrucciones {
+  text-align: left;
+  max-width: 560px;
+  margin: 1rem auto 1.5rem;
+  padding-left: 1.2rem;
+}
+
+.reto-instrucciones li {
+  margin-bottom: 0.5rem;
+}
+
+.reto-instrucciones li::marker {
+  color: var(--color-orange);
+}
+
+/* ---------- Progreso y mapa de preguntas ---------- */
+
+.reto-progreso__texto {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-blue-deep);
+  margin-bottom: 0.35rem;
+}
+
+.reto-progreso__barra {
+  height: 10px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.reto-progreso__relleno {
+  display: block;
+  height: 100%;
+  background: var(--color-blue-bright);
+  border-radius: 999px;
+  transition: width 0.25s ease;
+}
+
+.reto-mapa {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+}
+
+.reto-mapa__btn {
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--color-white);
+  color: var(--color-text-muted);
+  border: 2px dashed var(--color-border);
+  font-size: 0.85rem;
+}
+
+/* respondida: borde sólido + fondo (NO indica si es correcta) */
+.reto-mapa__btn.is-respondida {
+  border-style: solid;
+  border-color: var(--color-blue-bright);
+  background: var(--color-blue-bg);
+  color: var(--color-blue-deep);
+}
+
+.reto-mapa__btn.is-actual {
+  background: var(--color-blue-deep);
+  border-color: var(--color-orange-bright);
+  border-style: solid;
+  color: var(--color-white);
+}
+
+/* ---------- Pregunta ---------- */
+
+.reto-etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.reto-chip {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-blue-deep);
+  background: var(--color-blue-bg);
+  border-radius: 999px;
+  padding: 0.15rem 0.65rem;
+}
+
+.reto-chip--nivel {
+  color: var(--color-hint-text);
+  background: var(--color-hint-bg);
+}
+
+.reto-enunciado {
+  font-size: 1.02rem;
+}
+
+.reto-pregunta__texto {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--color-text);
+  margin: 0.9rem 0;
+}
+
+.reto-tabla-wrap {
+  overflow-x: auto;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.reto-tabla {
+  width: auto;
+  min-width: 0;
+}
+
+.reto-tabla th[scope="row"] {
+  background: var(--color-blue-deep);
+  color: var(--color-white);
+  text-align: left;
+  white-space: nowrap;
+  padding: 0.45rem 0.75rem;
+}
+
+.reto-tabla td {
+  text-align: center;
+  white-space: nowrap;
+  padding: 0.45rem 0.75rem;
+}
+
+.reto-opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.reto-opcion {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-white);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.reto-opcion:hover {
+  border-color: var(--color-blue-bright);
+  background: #f5fbff;
+}
+
+.reto-opcion:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.reto-opcion__letra {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-blue-deep);
+  color: var(--color-blue-deep);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.reto-opcion__texto {
+  padding-top: 0.15rem;
+}
+
+/* seleccionada: color + barra lateral + letra rellena (no depende solo del color) */
+.reto-opcion.is-seleccionada {
+  border-color: var(--color-blue-deep);
+  background: var(--color-blue-bg);
+  box-shadow: inset 4px 0 0 var(--color-blue-deep);
+}
+
+.reto-opcion.is-seleccionada .reto-opcion__letra {
+  background: var(--color-blue-deep);
+  color: var(--color-white);
+}
+
+/* ---------- Aviso de preguntas sin responder ---------- */
+
+.reto-aviso {
+  background: var(--color-hint-bg);
+  border: 2px solid var(--color-orange);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+}
+
+.reto-aviso__titulo {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-hint-text);
+}
+
+.reto-aviso__ir {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.6rem;
+}
+
+/* ---------- Resultados ---------- */
+
+.reto-puntaje {
+  text-align: center;
+  border-top: 6px solid var(--color-blue-bright);
+}
+
+.reto-puntaje--alto {
+  border-top-color: var(--color-green);
+}
+
+.reto-puntaje--medio {
+  border-top-color: var(--color-blue-bright);
+}
+
+.reto-puntaje--bajo {
+  border-top-color: var(--color-orange-bright);
+}
+
+.reto-puntaje__numero {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin: 0.3rem 0 0.6rem;
+}
+
+.reto-puntaje__fraccion {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--color-blue-deep);
+}
+
+.reto-puntaje__porcentaje {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--color-text-muted);
+}
+
+.reto-puntaje__mensaje {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.reto-situaciones {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.reto-situacion {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  border-left-width: 5px;
+}
+
+.reto-situacion--completa {
+  border-left-color: var(--color-success);
+  background: var(--color-success-bg);
+}
+
+.reto-situacion--parcial {
+  border-left-color: var(--color-orange-bright);
+  background: var(--color-hint-bg);
+}
+
+.reto-situacion--nula {
+  border-left-color: var(--color-danger);
+  background: var(--color-danger-bg);
+}
+
+.reto-situacion__nombre {
+  font-weight: 700;
+}
+
+.reto-situacion__marcador {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.reto-situacion__estado {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.reto-situacion--completa .reto-situacion__estado {
+  color: var(--color-success);
+}
+
+.reto-situacion--parcial .reto-situacion__estado {
+  color: var(--color-hint-text);
+}
+
+.reto-situacion--nula .reto-situacion__estado {
+  color: var(--color-danger);
+}
+
+/* Revisión pregunta por pregunta */
+.reto-revision {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reto-revision__item {
+  border: 1px solid var(--color-border);
+  border-left: 5px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+}
+
+.reto-revision__item--ok {
+  border-left-color: var(--color-success);
+}
+
+.reto-revision__item--mal,
+.reto-revision__item--sin {
+  border-left-color: var(--color-danger);
+}
+
+.reto-revision__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.reto-revision__cabecera h4 {
+  margin: 0;
+}
+
+.reto-revision__estado {
+  font-weight: 800;
+  font-size: 0.85rem;
+  border-radius: 999px;
+  padding: 0.15rem 0.7rem;
+}
+
+.reto-revision__estado--ok {
+  color: var(--color-success);
+  background: var(--color-success-bg);
+}
+
+.reto-revision__estado--mal,
+.reto-revision__estado--sin {
+  color: var(--color-danger);
+  background: var(--color-danger-bg);
+}
+
+.reto-revision__opciones {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.reto-revision__opcion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-text-muted);
+}
+
+.reto-revision__texto {
+  flex: 1 1 200px;
+  padding-top: 0.15rem;
+}
+
+.reto-revision__nota {
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding-top: 0.25rem;
+}
+
+.reto-revision__opcion.is-correcta {
+  border: 2px solid var(--color-success);
+  background: var(--color-success-bg);
+  color: var(--color-text);
+}
+
+.reto-revision__opcion.is-correcta .reto-revision__nota {
+  color: var(--color-success);
+}
+
+.reto-revision__opcion.is-correcta .reto-opcion__letra {
+  border-color: var(--color-success);
+  background: var(--color-success);
+  color: var(--color-white);
+}
+
+.reto-revision__opcion.is-incorrecta {
+  border: 2px solid var(--color-danger);
+  background: var(--color-danger-bg);
+  color: var(--color-text);
+}
+
+.reto-revision__opcion.is-incorrecta .reto-revision__nota {
+  color: var(--color-danger);
+}
+
+.reto-revision__opcion.is-incorrecta .reto-opcion__letra {
+  border-color: var(--color-danger);
+  background: var(--color-danger);
+  color: var(--color-white);
+}
+
+.reto-revision__sin {
+  color: var(--color-danger);
+  font-weight: 700;
+}
+
+.reto-justificacion {
+  border-left: 5px solid var(--color-orange);
+  background: var(--color-hint-bg);
+  border-radius: var(--radius);
+  padding: 0.65rem 0.9rem;
+}
+
+/* ---------- Celular ---------- */
+
+@media (max-width: 640px) {
+  .reto-card {
+    padding: 1rem;
+  }
+
+  .reto-inicio {
+    padding: 1.5rem 1rem;
+  }
+
+  .reto-acciones .reto-btn {
+    flex: 1 1 auto;
+  }
+
+  .reto-situacion {
+    grid-template-columns: 1fr auto;
+  }
+
+  .reto-situacion .reto-btn {
+    grid-column: 1 / -1;
+  }
+
+  .reto-puntaje__fraccion {
+    font-size: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reto-progreso__relleno,
+  .reto-opcion {
+    transition: none;
+  }
+}
+
+/* =====================================================================
+ * Muelle 3D (dentro de la Situación 4): escena A-Frame con VR y AR.
+ * Modos: escena normal · AR real (WebXR) · cámara de fondo a pantalla completa.
+ * ===================================================================== */
+
+/* "hidden" debe ganarle a los display: flex de esta sección */
+.muelle3d [hidden] {
+  display: none !important;
+}
+
+.muelle3d__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.muelle3d {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  border-top: 5px solid var(--color-orange-bright);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.muelle3d h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Leyenda de monedas */
+.muelle3d__leyenda {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1rem;
+  font-size: 0.85rem;
+}
+
+.muelle3d__leyenda li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.muelle3d__moneda {
+  flex: 0 0 auto;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  border: 2px solid rgba(15, 23, 42, 0.35);
+}
+
+.muelle3d__moneda--oro {
+  background: radial-gradient(circle at 35% 30%, #fde68a, #f5b301 60%, #b45309);
+}
+
+.muelle3d__moneda--plata {
+  background: radial-gradient(circle at 35% 30%, #ffffff, #cbd5e1 60%, #64748b);
+}
+
+/* Escena */
+.muelle3d__escena {
+  position: relative;
+  height: clamp(320px, 55vh, 480px);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  /* atardecer de respaldo mientras carga la escena */
+  background: linear-gradient(180deg, #16294d 0%, #6b4f97 38%, #f59e7b 52%, #0e7490 53%, #0b5c73 100%);
+}
+
+.muelle3d__lienzo,
+.muelle3d__escena a-scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Absoluto: así el ancho en píxeles del lienzo de A-Frame no estira la
+   columna de la grilla (en el celular se desbordaba hacia la derecha). */
+.muelle3d__lienzo {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* En modo cámara no se ofrece el botón VR de A-Frame */
+.muelle3d__escena--camara .a-enter-vr {
+  display: none;
+}
+
+.muelle3d__cargando {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+}
+
+.muelle3d__cargando-barco {
+  font-size: 2.4rem;
+  animation: muelle3d-mecer 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes muelle3d-mecer {
+  from {
+    transform: rotate(-8deg);
+  }
+  to {
+    transform: rotate(8deg) translateY(-6px);
+  }
+}
+
+/* Sin WebGL / sin internet */
+.muelle3d__escena--alternativa {
+  height: auto;
+  background: var(--color-blue-bg);
+}
+
+.muelle3d__alternativa {
+  padding: 1rem;
+}
+
+.muelle3d__alternativa-titulo {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-blue-deep);
+}
+
+/* Cámara de fondo: el video queda detrás de la escena transparente */
+.muelle3d__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  background: #000;
+}
+
+/* Modo cámara: la escena ocupa toda la pantalla */
+.muelle3d__escena--camara {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  height: 100vh;
+  height: 100dvh;
+  border-radius: 0;
+  border: 0;
+  background: #000;
+}
+
+body.muelle3d-sin-scroll {
+  overflow: hidden;
+}
+
+/* Overlay (en AR real lo muestra WebXR "dom-overlay"; en modo cámara va encima) */
+.muelle3d__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: max(12px, env(safe-area-inset-top)) 12px max(16px, env(safe-area-inset-bottom));
+  pointer-events: none;
+  font-family: var(--font-body);
+}
+
+.muelle3d__overlay > * {
+  pointer-events: auto;
+}
+
+.muelle3d__overlay-arriba {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.muelle3d__overlay-pista {
+  flex: 1 1 auto;
+  margin: 0;
+  background: rgba(15, 23, 42, 0.72);
+  color: var(--color-white);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.8rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.muelle3d__overlay-momento {
+  align-self: center;
+  margin: 0;
+  background: #fef9c3;
+  color: var(--color-hint-text);
+  border: 2px solid #facc15;
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-align: center;
+}
+
+.muelle3d__overlay-abajo {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  padding: 0.4rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.muelle3d__overlay-horas {
+  min-width: 6.5rem;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--color-blue-deep);
+}
+
+/* Botones */
+.muelle3d__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.muelle3d__btn {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  font-weight: 800;
+  font-size: 0.92rem;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.muelle3d__btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.muelle3d__btn--primario {
+  background: var(--color-orange-bright);
+  color: var(--color-white);
+}
+
+.muelle3d__btn--primario:hover:not(:disabled) {
+  background: var(--color-orange);
+}
+
+.muelle3d__btn--secundario {
+  background: var(--color-white);
+  color: var(--color-blue-deep);
+  border-color: var(--color-blue-deep);
+}
+
+.muelle3d__btn--secundario:hover:not(:disabled) {
+  background: var(--color-blue-bg);
+}
+
+.muelle3d__btn--redondo {
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  font-size: 1.6rem;
+  background: var(--color-blue-deep);
+  color: var(--color-white);
+}
+
+.muelle3d__btn--naranja {
+  background: var(--color-orange-bright);
+}
+
+.muelle3d__btn--salir {
+  flex: 0 0 auto;
+  background: var(--color-white);
+  color: var(--color-text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.muelle3d__nota,
+.muelle3d__ayuda {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.muelle3d__nota:empty {
+  display: none;
+}
+
+/* Momento clave (x del punto común) */
+.muelle3d__momento {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  background: linear-gradient(135deg, #fef9c3, var(--color-hint-bg));
+  border: 2px solid #facc15;
+  border-left: 6px solid var(--color-orange-bright);
+  border-radius: var(--radius);
+  padding: 0.7rem 0.9rem;
+  animation: muelle3d-aparecer 0.45s ease-out;
+}
+
+.muelle3d__momento p {
+  margin: 0;
+}
+
+.muelle3d__momento strong {
+  display: block;
+  font-family: var(--font-heading);
+  color: var(--color-hint-text);
+}
+
+.muelle3d__momento-icono {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-orange);
+}
+
+@keyframes muelle3d-aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .muelle3d__cargando-barco,
+  .muelle3d__momento {
+    animation: none;
+  }
+}
